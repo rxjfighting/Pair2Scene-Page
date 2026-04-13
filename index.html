@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Pair2Scene</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" href="data:,">
+
+    <meta property="og:site_name" content="Pair2Scene" />
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content="Pair2Scene" />
+    <meta property="og:description" content="Pair2Scene" />
+    <meta property="og:url" content="" />
+
+    <script src="assets/js/video_comparison.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+<div class="highlight-clean" style="padding-bottom: 10px;">
+        <div class="container" style="max-width: 1024px; margin-bottom: 20px;">
+            <h1 class="text-center"><b>Pair2Scene: Learning Local Object Relations for Procedural Scene Generation</b></h1>
+        </div>
+
+        <div class="container" style="max-width: 980px; margin-bottom: 20px;">
+            <div class="row authors">
+                <div class="col">
+                    <div class="text-center">
+                        <span class="author-block" style="font-size: 22px;">
+                        <a href="https://scholar.google.com/citations?user=8AubXI4AAAAJ&hl=zh-CN">Xingjian Ran</a><sup>1</sup>,</span>
+                        <span class="author-block" style="font-size: 22px;">
+                        <a href="https://hishujie.github.io/">Shujie Zhang</a><sup>2</sup>,</span>
+                        <span class="author-block" style="font-size: 22px;">
+                        <a href="https://github.com/PC1E-bit">Weipeng Zhong</a><sup>3</sup>,</span>
+                        <span class="author-block" style="font-size: 22px;">
+                        <a href="">Li Luo</a><sup>1,4</sup>,</span>
+                        <span class="author-block" style="font-size: 22px;">
+                        <a href="https://daibo.info/">Bo Dai</a><sup>1</sup></span>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="author-block" style="font-size: 18px;"><sup>1</sup>The University of Hong Kong</span>
+                        <span class="author-block" style="font-size: 18px;"><sup>2</sup>Tsinghua University</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="author-block" style="font-size: 18px;"><sup>3</sup>Shanghai Jiao Tong University</span>
+                        <span class="author-block" style="font-size: 18px;"><sup>4</sup>Shenzhen Loop Area Institute</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 style="margin-bottom: 20px;">Abstract</h2>
+                <img src="./static/teaser.png" style="width: 100%; margin-bottom: 20px; border-radius: 8px">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px; margin-bottom: 50px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <p style="text-align: justify;">
+                    Generating high-fidelity 3D indoor scenes is a critical task in computer graphics, yet it remains challenging due to data scarcity and the complexity of spatial relationships. Current generative methods often struggle to scale to dense scenes beyond the training distribution or rely on language models that lack precise spatial reasoning. In response, we propose Pair2Scene, an innovative framework for scene generation based on learned procedural rules. The core observation of this research is that object placement in indoor environments depends primarily on local dependencies rather than redundant global distributions. Pair2Scene captures two types of inter-object relationships: physical support and semantic functional connections, establishing a network model capable of predicting the spatial distribution of dependent objects based on the geometry of anchor objects. By training on the 3D-Pairs dataset, this framework can recursively apply the model during inference to generate complex environments that are physically plausible and semantically logical.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 style="margin-bottom: 20px;">Data Curation: From Scenes to Pairs</h2>
+                <img src="./static/data_curation.png" style="width: 100%; margin-bottom: 20px; border-radius: 8px">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px; margin-bottom: 50px;">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <p style="text-align: justify;">
+                    To overcome the limitations of data sparsity and constrained distributions in existing 3D scene datasets, we decompose holistic scenes into local object pairs. We present the <b>3D-Pairs Dataset</b>, curated via an automated pipeline that extracts two key relationships: <b>Support Relations</b> (based on collision detection and gravity projection) and <b>Functional Relations</b> (based on co-occurrence and proximity). This transition from "complete scenes" to "atomic pairs" scales the dataset from thousands of scenes to tens of thousands of relational instances. This approach enables the model to learn universal placement rules that generalize across diverse environments, significantly enhancing its ability to synthesize complex, Out-of-Distribution scenes.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 style="margin-bottom: 20px;">Learning Local Rules</h2>
+                <img src="./static/model_pipeline.png" style="width: 100%; margin-bottom: 20px; border-radius: 8px">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px; margin-bottom: 50px;">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <p style="text-align: justify;">
+                    The core model of Pair2Scene consists of a geometry-aware layout predictor that incorporates a point cloud encoder to extract fine-grained geometric features of assets. By utilizing a Point-MAE pre-trained model, our system perceives the physical properties and orientation of objects, enabling more precise placement prediction than methods relying solely on semantic categories.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 style="margin-bottom: 20px;">Inference</h2>
+                <img src="./static/inference_pipeline.png" style="width: 100%; margin-bottom: 20px; border-radius: 8px">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px; margin-bottom: 50px;">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <p style="text-align: justify;">
+                    In the inference pipeline, we represent the scene structure as a hierarchy of support and functional trees, serialized into sequences of ordered relationship tuples. This local rule modeling approach not only alleviates data scarcity but also allows the model to generate scenes more complex than the training data by combining various local rules. To ensure global consistency, we employ collision-aware rejection sampling and gravity simulation during inference, effectively transforming local conditional distributions into valid global scene configurations.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 style="margin-bottom: 40px;">Experimental Results</h2>
+                <img src="./static/comparison_3d_front.png" style="width: 100%; margin-bottom: 12px; border-radius: 8px">
+                <p style="text-align: center;">3D-Front Only Setting</p>
+                <img src="./static/comparison_full.png" style="width: 100%;">
+                <p style="text-align: center;">Multi-Source Setting</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1024px; margin-bottom: 50px;">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <p style="text-align: justify;">
+                    Extensive experiments on 3D-Front and multi-source datasets demonstrate that Pair2Scene significantly outperforms existing learning-based methods and large language model baselines in generating complex environments. Furthermore, Pair2Scene's layouts are more aligned with human common sense in terms of semantic alignment, physical plausibility, and scene complexity. Notably, the Ours-Beyond variant exhibits superior generalization, producing high-quality dense scenes with object densities far exceeding the training distribution while maintaining zero floating rates and extremely low collision rates.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider" />
+    <div class="container" style="max-width: 1024px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Generated Samples</h2>
+                <p>3D Front Only Setting:</p>
+            </div>
+        </div>
+
+        <div class="row captioned_videos">
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r1c1.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r1c2.mp4" type="video/mp4"></source>
+                    </video>
+                </div>  
+            </div>
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r1c3.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Multi-Source Setting:</p>
+            </div>
+        </div>
+        <div class="row captioned_videos">
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r2c1.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r2c2.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r2c3.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <p>More Scene Types:</p>
+            </div>
+        </div>
+        <div class="row captioned_videos">
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r3c1.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r3c2.mp4" type="video/mp4"></source>
+                    </video>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="video-compare-container" style="width: 100%">
+                    <video class="video lazy" loop playsinline autoplay muted style="width: 100%">
+                        <source src="static/videos/r3c3.mp4" type="video/mp4"></source>
+                    </video>
+                </div>            
+            </div>
+        </div>
+    </div>
+</body>
+</html>
